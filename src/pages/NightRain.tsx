@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BOSSES } from "../constants/bosses";
 import { TERRAINS } from "../constants/bosses";
+import { useEffect } from "react";
 
 type NightRainResult = {
   bossesId: number;
@@ -107,6 +108,9 @@ export default function NightRain() {
       <div className="App-footer">
         <Link to="/" className="btn btn-primary">
           Homeへ
+        </Link>
+        <Link to="/nightRain/statistics" className="btn btn-primary">
+          統計へ
         </Link>
       </div>
     </div>

@@ -114,3 +114,55 @@
   padding-left: 2vh;
   text-align: left;
 }
+
+.Gacha-Count {
+  margin: 2rem;
+}
+
+.App-Statistics{
+  display: flex;
+  flex-direction: column;
+  font-size: x-large;
+  width: 80vw;
+  background-color: #232427;
+  padding-top: 0.5rem;
+}
+
+.App-Statistics img{
+  width: 100px;
+  height: auto;
+  border-radius: 20px;
+}
+
+.App-Statistics-Items{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.App-Statistics-Item{
+  width: 25vw;
+}
+
+.App-Tab{
+  width: 80vw;
+  display: flex;
+}
+
+.App-Tab-Button{
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+  width: 20vw;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  background-color: rgb(48, 50, 59);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.App-Tab-Button.active{
+  background-color: #232427;
+}
