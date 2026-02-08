@@ -1,37 +1,21 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { BOSSES } from "../constants/bosses";
-import { TERRAINS } from "../constants/bosses";
-import { useEffect } from "react";
-
-type NightRainResult = {
-  bossesId: number;
-  terrainEffectId: number;
-  isEver: boolean;
-};
+import { useState, type SubmitEvent } from "react";
+import { BOSSES, TERRAINS } from "../constants/nightRainData";
+import { type GachaResult } from "../types/nightRainTypes";
+import {postNightRainApi} from "../api/nightRainApi";
 
 export default function NightRain() {
-  const [results, setResults] = useState<NightRainResult[]>([]);
+  const [results, setResults] = useState<GachaResult[]>([]);
   const [times, setTimes] = useState<number>(1);
   const [isEverIncluded, setIsEverIncluded] = useState<boolean>(false);
-  const apiPayload = {
-    times: Number(times),
-    IsEverIncluded: isEverIncluded,
-  };
-  const playGacha = async (e: React.FormEvent) => {
-    console.log("Api Start");
-    e.preventDefault();
-    const response = await fetch("http://localhost:5156/api/NightRain", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(apiPayload),
-    });
 
-    const result: NightRainResult[] = await response.json();
+  const playGacha = async (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = await postNightRainApi({
+      times: Number(times),
+      IsEverIncluded: isEverIncluded,
+    });
     setResults(result);
-    console.log("results:", results);
   };
 
   return (
@@ -75,7 +59,12 @@ export default function NightRain() {
               </label>
             </div>
             <div className="Gacha-Item">
-              <button style={{ borderRadius: "10px" }}>START</button>
+              <button
+                className="btn btn-outline-light"
+                style={{ borderRadius: "10px" }}
+              >
+                START
+              </button>
             </div>
           </div>
         </form>
@@ -87,7 +76,10 @@ export default function NightRain() {
               const terrain = TERRAINS[item.terrainEffectId];
               const key = index + 1;
               return (
-                <div className={`NightRain-Card ${item.isEver ? "ever" : ""}`}>
+                <div
+                  className={`NightRain-Card ${item.isEver ? "ever" : ""}`}
+                  key={key}
+                >
                   <div key={key}>
                     <img src={boss.img} alt={boss.name} />
                   </div>
@@ -106,10 +98,10 @@ export default function NightRain() {
       </div>
 
       <div className="App-footer">
-        <Link to="/" className="btn btn-primary">
+        <Link to="/" className="btn btn-light disabled">
           Homeへ
         </Link>
-        <Link to="/nightRain/statistics" className="btn btn-primary">
+        <Link to="/nightRain/statistics" className="btn btn-light">
           統計へ
         </Link>
       </div>
