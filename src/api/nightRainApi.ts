@@ -5,7 +5,7 @@ export type NightRainRequest = {
   IsEverIncluded: boolean;
 };
 
-const url = "http://localhost:5156/api/";
+const url = "http://18.179.223.174/api/";
 
 export async function postNightRainApi(
   params: NightRainRequest
