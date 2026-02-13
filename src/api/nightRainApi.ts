@@ -5,7 +5,8 @@ export type NightRainRequest = {
   IsEverIncluded: boolean;
 };
 
-const url = "http://18.179.223.174/api/";
+ const url = "https://once-shorter-connections-vacations.trycloudflare.com/api/";
+// const url = "http://localhost:5156/api/";
 
 export async function postNightRainApi(
   params: NightRainRequest

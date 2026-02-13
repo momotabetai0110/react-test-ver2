@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/react-test-ver2/">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/face" element={<Face />} />
@@ -17,5 +17,6 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 export default App;
